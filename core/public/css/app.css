@@ -1,0 +1,305 @@
+:root {
+  --studio-bg: #f3ece1;
+  --studio-leaf: #3e4a40;
+  --studio-ink: #2c332e;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+body.studio {
+  margin: 0;
+  min-height: 100dvh;
+  background: var(--studio-bg);
+  color: var(--studio-ink);
+  font-family: Outfit, "Helvetica Neue", sans-serif;
+  display: flex;
+  justify-content: center;
+}
+
+body.studio.studio--auth {
+  align-items: center;
+}
+
+body.studio.studio--dashboard {
+  align-items: flex-start;
+}
+
+.studio-shell {
+  display: grid;
+  min-height: 100dvh;
+  grid-template-columns: minmax(0, 1.05fr) minmax(22rem, 32rem);
+}
+
+.studio-art {
+  position: relative;
+  overflow: hidden;
+  background: #d7cbb8;
+}
+
+.studio-art img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.studio-mark {
+  position: absolute;
+  left: 1.4rem;
+  bottom: 1.4rem;
+  margin: 0;
+  font-family: "Great Vibes", cursive;
+  font-size: 2rem;
+  color: #f7f3ea;
+  text-shadow: 0 8px 24px rgba(20, 16, 10, 0.35);
+}
+
+.studio-main {
+  width: 100%;
+  padding: 2.4rem 1.6rem 3rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.studio-main--open,
+.studio-main--dashboard {
+  min-height: 100dvh;
+  max-width: 36rem;
+}
+
+.studio-main--dashboard {
+  max-width: 42rem;
+  padding-top: 2rem;
+}
+
+#loadingView,
+#authGate,
+#dashboard {
+  width: 100%;
+}
+
+#authGate {
+  max-width: 28rem;
+  margin: 0 auto;
+}
+
+.eyebrow {
+  margin: 0 0 0.6rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #6a736c;
+}
+
+.studio-main h1,
+.dashboard h2 {
+  margin: 0;
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 500;
+  font-size: clamp(2.2rem, 6vw, 3.3rem);
+  line-height: 1.1;
+}
+
+.lede {
+  max-width: 28rem;
+  margin: 0.9rem 0 1.6rem;
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+  font-size: 1.2rem;
+  color: #5c635e;
+}
+
+.tabs {
+  display: flex;
+  gap: 0.4rem;
+  margin-bottom: 1rem;
+}
+
+.tab {
+  border: 0;
+  background: transparent;
+  min-height: 2.4rem;
+  padding: 0 0.4rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+  color: #7a827b;
+  cursor: pointer;
+}
+
+.tab.is-on {
+  color: var(--studio-leaf);
+  box-shadow: inset 0 -2px 0 #c9a227;
+}
+
+.auth-form,
+.dashboard {
+  display: grid;
+  gap: 0.8rem;
+  max-width: 26rem;
+}
+
+.dashboard--wide {
+  max-width: none;
+}
+
+.dash-lede {
+  margin-bottom: 0;
+}
+
+.sign-in-root {
+  min-height: 24rem;
+  display: flex;
+  justify-content: center;
+}
+
+.sign-in-root > * {
+  width: 100%;
+}
+
+.auth-form label,
+.dashboard label {
+  display: grid;
+  gap: 0.35rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #667066;
+}
+
+.auth-form input {
+  min-height: 2.6rem;
+  padding: 0.55rem 0.7rem;
+  border: 1px solid rgba(62, 74, 64, 0.2);
+  background: #fffcf6;
+  font: 400 1.05rem "Cormorant Garamond", serif;
+}
+
+.primary-btn,
+.ghost-btn {
+  min-height: 2.6rem;
+  padding: 0 1rem;
+  border-radius: 999px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+  cursor: pointer;
+}
+
+.primary-btn {
+  border: 0;
+  background: var(--studio-leaf);
+  color: #f7f3ea;
+}
+
+.ghost-btn {
+  border: 1px solid rgba(62, 74, 64, 0.28);
+  background: transparent;
+  color: var(--studio-leaf);
+}
+
+.form-error {
+  margin: 0;
+  color: #8a3b32;
+  font-size: 0.9rem;
+}
+
+.dash-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: flex-end;
+  margin-bottom: 1rem;
+}
+
+.dash-actions {
+  display: flex;
+  gap: 0.45rem;
+}
+
+.invite-cards {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 0.7rem;
+}
+
+.invite-card-item {
+  list-style: none;
+}
+
+.invite-card,
+.empty {
+  display: grid;
+  gap: 0.25rem;
+  padding: 1rem 1.05rem;
+  background: #fffcf6;
+  border: 1px solid rgba(62, 74, 64, 0.08);
+  text-decoration: none;
+  color: inherit;
+}
+
+.invite-meta,
+.invite-subtitle {
+  font-size: 0.92rem;
+  color: #667066;
+}
+
+.invite-subtitle {
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+}
+
+.invite-card-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-top: 0.55rem;
+}
+
+.invite-open-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.invite-card strong {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.35rem;
+  font-weight: 500;
+}
+
+.invite-status {
+  font-size: 0.68rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #8a7a3a;
+}
+
+.empty {
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+}
+
+@media (max-width: 860px) {
+  .studio-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .studio-art {
+    height: 38vh;
+  }
+
+  .studio-main {
+    padding-top: 1.5rem;
+  }
+
+  .dash-head {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

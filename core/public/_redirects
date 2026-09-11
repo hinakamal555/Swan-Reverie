@@ -1,0 +1,4 @@
+/api/*  /.netlify/functions/api/:splat  200
+/i/*  /invitation.html  200
+/editor/*  /editor.html  200
+/preview/*  /invitation.html  200

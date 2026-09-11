@@ -1,0 +1,22 @@
+{
+  "templateId": "classic-floral-01",
+  "name": "Classic Floral",
+  "version": "1.0.0",
+  "siteTitle": "Classic Floral Invitation Editor",
+  "brandName": "HoneyBee Studio",
+  "supportedFeatures": [
+    "gatefold",
+    "countdown",
+    "scratch",
+    "events",
+    "journey",
+    "rsvp",
+    "maps",
+    "calendar",
+    "music"
+  ],
+  "editor": {
+    "sections": ["couple", "cover", "intro", "when", "events", "journey", "media", "rsvp", "closing", "publish"],
+    "features": []
+  }
+}

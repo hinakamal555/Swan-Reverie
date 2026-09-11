@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f2eee8">
+  <title>__SITE_TITLE__</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Great+Vibes&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect fill='%235A6B5C' width='64' height='64' rx='12'/%3E%3Ctext x='32' y='42' text-anchor='middle' fill='%23D4AF37' font-family='Georgia' font-size='22'%3E%26amp;%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="/css/app.css">
+</head>
+<body class="studio">
+  <main class="studio-main studio-main--dashboard">
+    <section id="loadingView">
+      <p class="eyebrow" data-brand>__BRAND_NAME__</p>
+      <h1>Loading your studio…</h1>
+      <p class="lede" id="openStatus">Checking your account.</p>
+    </section>
+
+    <section id="authGate" hidden>
+      <p class="eyebrow" data-brand>__BRAND_NAME__</p>
+      <h1>Sign in to continue</h1>
+      <p class="lede">Create and manage your invitations, publish guest links, and review RSVP replies in one place.</p>
+      <div id="signInRoot" class="sign-in-root"></div>
+      <p class="form-error" id="openError" hidden></p>
+    </section>
+
+    <section id="dashboard" class="dashboard dashboard--wide" hidden>
+      <div class="dash-head">
+        <div>
+          <p class="eyebrow" data-brand>__BRAND_NAME__</p>
+          <h1>Your invitations</h1>
+          <p class="lede dash-lede">Open an invitation to edit, publish, and manage its RSVP inbox.</p>
+        </div>
+        <div class="dash-actions">
+          <div id="userButton"></div>
+          <button type="button" class="primary-btn" id="createBtn">New invitation</button>
+        </div>
+      </div>
+
+      <p class="form-error" id="dashError" hidden></p>
+      <ul id="inviteList" class="invite-cards"></ul>
+      <p class="empty" id="dashEmpty" hidden>No invitations yet. Create one to get started.</p>
+    </section>
+  </main>
+  <script src="/js/clerk-init.js"></script>
+  <script src="/js/template-meta.js"></script>
+  <script src="/js/lib.js"></script>
+  <script src="/js/home.js"></script>
+</body>
+</html>

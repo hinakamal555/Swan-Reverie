@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en" class="editor-html">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f2eee8">
+  <title>Editor — __SITE_TITLE__</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Great+Vibes&family=Outfit:wght@300;400;500&family=Playfair+Display:ital,wght@0,500;1,500&display=swap" rel="stylesheet">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect fill='%235A6B5C' width='64' height='64' rx='12'/%3E%3Ctext x='32' y='42' text-anchor='middle' fill='%23D4AF37' font-family='Georgia' font-size='22'%3E%26amp;%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="/css/invitation.css">
+  <link rel="stylesheet" href="/css/editor.css">
+</head>
+<body class="editor-body">
+  <header class="editor-top">
+    <a class="brand" href="/" data-brand>__BRAND_NAME__</a>
+    <p class="save-state" id="saveState" aria-live="polite">Loading…</p>
+    <div class="editor-actions">
+      <a class="ghost-btn editor-nav-link" href="/">My invitations</a>
+      <button type="button" class="ghost-btn" id="saveBtn">Save</button>
+      <button type="button" class="ghost-btn" id="previewBtn">View live</button>
+      <button type="button" class="primary-btn" id="publishBtn">Publish</button>
+      <button type="button" class="ghost-btn" id="copyBtn" hidden>Copy link</button>
+    </div>
+    <div id="userButton" class="editor-user-btn"></div>
+  </header>
+
+  <div class="mobile-tabs">
+    <button type="button" class="is-on" data-pane="form">Edit</button>
+    <button type="button" data-pane="preview">Preview</button>
+    <button type="button" data-pane="replies">Replies</button>
+  </div>
+
+  <div class="editor-layout">
+    <aside class="editor-form" id="formPane">
+      <nav class="section-nav" id="sectionNav"></nav>
+      <form id="editorForm">
+        <section class="ed-section ed-section--meta" id="sec-invitation-name">
+          <h2>Invitation name</h2>
+          <p class="hint">Only you see this — use it to tell invitations apart on your dashboard.</p>
+          <label>Name <input name="invitationTitle" maxlength="80" placeholder="Unnamed invitation"></label>
+        </section>
+
+        <section class="ed-section" id="sec-couple">
+          <h2>Couple</h2>
+          <label>Bride name <input name="brideName" maxlength="80"></label>
+          <label>Groom name <input name="groomName" maxlength="80"></label>
+        </section>
+
+        <section class="ed-section" id="sec-cover">
+          <h2>Cover</h2>
+          <p class="hint">Names, date, and location on the first screen.</p>
+          <label>Line above names <input name="text.heroLabel" maxlength="160"></label>
+          <label>Location line <input name="text.heroLocation" maxlength="160"></label>
+          <label>Wedding date <input name="weddingDate" type="date"></label>
+          <label>Countdown time <input name="weddingTime" type="time"></label>
+          <label>Timezone
+            <select name="timezone" id="timezoneSelect"></select>
+          </label>
+          <label>Scroll button <input name="text.scrollLabel" maxlength="160"></label>
+        </section>
+
+        <section class="ed-section" id="sec-intro">
+          <h2>Intro</h2>
+          <label>Heading <input name="text.introHeading" maxlength="160"></label>
+          <label>Paragraph <textarea name="text.introBody" rows="3" maxlength="1200"></textarea></label>
+          <label>Family label <input name="text.familyLabel" maxlength="160"></label>
+        </section>
+
+        <section class="ed-section" id="sec-when">
+          <h2>Countdown &amp; scratch</h2>
+          <label>Heading <input name="text.saveTheDateHeading" maxlength="160"></label>
+          <label>Introduction <textarea name="text.saveTheDateBody" rows="3" maxlength="1200"></textarea></label>
+          <label class="check-row"><input name="scratchEnabled" type="checkbox"> Enable scratch-to-reveal</label>
+          <label>Scratch prompt <input name="scratchPrompt" maxlength="120"></label>
+          <label>Text after scratching <input name="scratchCompletion" maxlength="120"></label>
+          <div id="scratchCards"></div>
+          <button type="button" class="ghost-btn" id="addCardBtn">+ Add scratch card</button>
+        </section>
+
+        <section class="ed-section" id="sec-events">
+          <h2>Events</h2>
+          <p class="hint">Each event shows a title, date, dress line, colour dots, time, place, maps, and calendar.</p>
+          <label>Maps button <input name="text.mapsButtonLabel" maxlength="160"></label>
+          <label>Calendar button <input name="text.calendarButtonLabel" maxlength="160"></label>
+          <div id="eventList"></div>
+          <button type="button" class="ghost-btn" id="addEventBtn">+ Add event</button>
+        </section>
+
+        <section class="ed-section" id="sec-journey">
+          <h2>Journey</h2>
+          <label class="check-row"><input name="journeyEnabled" type="checkbox"> Show journey section</label>
+          <label>Title <input name="journeyTitle" maxlength="80"></label>
+          <label>Subtitle <input name="journeySubtitle" maxlength="80" placeholder="Coaches"></label>
+          <label>Depart line <input name="journeyDepart" maxlength="160"></label>
+          <label>Seat note <input name="journeySeat" maxlength="160"></label>
+          <label>Meet heading <input name="journeyMeetHeading" maxlength="80"></label>
+          <label>Meet line <input name="journeyMeetLine" maxlength="160"></label>
+          <label>Stop note <input name="journeyStop" maxlength="160"></label>
+          <label>Arrival heading <input name="journeyArrivalHeading" maxlength="80"></label>
+          <label>Arrival line <input name="journeyArrivalLine" maxlength="160"></label>
+          <label>Extra note <input name="journeyExtra" maxlength="160"></label>
+          <label>Map URL <input name="journeyMaps" type="url" maxlength="500"></label>
+        </section>
+
+        <section class="ed-section" id="sec-media">
+          <h2>Music</h2>
+          <p class="hint">MP3 up to 10MB. Short loops (under 2 minutes) work best on mobile.</p>
+          <label>Music URL <input name="musicUrl" maxlength="500"></label>
+          <p class="form-error" id="musicUploadError" hidden></p>
+          <div class="media-actions">
+            <label class="upload-row">Upload music (MP3) <input id="musicUploadInput" data-upload="musicUrl" type="file" accept="audio/mpeg,audio/mp3,.mp3"></label>
+            <button type="button" class="ghost-btn" data-clear-media="musicUrl">Remove music</button>
+          </div>
+        </section>
+
+        <section class="ed-section" id="sec-rsvp">
+          <h2>RSVP</h2>
+          <label class="check-row"><input name="rsvpEnabled" type="checkbox"> Enable RSVP</label>
+          <label>Heading <input name="text.rsvpHeading" maxlength="160"></label>
+          <label>Introduction <textarea name="text.rsvpBody" rows="3" maxlength="1200"></textarea></label>
+          <label>Deadline <input name="rsvpDeadline" type="date"></label>
+          <label>Name field label <input name="text.rsvpNameLabel" maxlength="160"></label>
+          <label>Message field label <input name="text.rsvpMessageLabel" maxlength="160"></label>
+          <label>Submit button <input name="text.rsvpSubmitLabel" maxlength="160"></label>
+          <fieldset class="checks">
+            <legend>Attendance options</legend>
+            <label class="check-row"><input type="checkbox" name="optYes"> Attending</label>
+            <label class="check-row"><input type="checkbox" name="optNo"> Not attending</label>
+            <label class="check-row"><input type="checkbox" name="optMaybe"> Maybe</label>
+          </fieldset>
+        </section>
+
+        <section class="ed-section" id="sec-closing">
+          <h2>Closing</h2>
+          <label>Closing line <textarea name="text.closingText" rows="3" maxlength="1200"></textarea></label>
+        </section>
+
+        <section class="ed-section" id="sec-publish">
+          <h2>Publish</h2>
+          <p id="publishUrl" class="publish-url">Save and publish to receive a shareable link.</p>
+        </section>
+      </form>
+    </aside>
+
+    <section class="editor-preview" id="previewPane">
+      <button type="button" class="replies-toggle" id="toggleRepliesBtn" aria-expanded="false">Replies</button>
+      <div class="phone">
+        <div id="previewRoot" class="invite-root is-embedded"></div>
+      </div>
+    </section>
+
+    <aside class="replies-pane" id="repliesPane" aria-hidden="true">
+      <header class="replies-pane-head">
+        <div>
+          <h2>RSVP replies</h2>
+          <p class="hint replies-count" id="rsvpCountLabel"></p>
+        </div>
+        <button type="button" class="ghost-btn replies-close" id="closeRepliesBtn" aria-label="Hide replies">Hide replies</button>
+      </header>
+      <div class="replies-pane-body">
+        <p class="hint">Guest replies appear here after they submit the form on your published invitation.</p>
+        <div class="rsvp-dashboard-actions">
+          <button type="button" class="ghost-btn" id="refreshRsvpsBtn">Refresh</button>
+          <button type="button" class="ghost-btn" id="exportRsvpsBtn">Download CSV</button>
+        </div>
+        <p class="form-error" id="rsvpLoadError" hidden></p>
+        <p class="hint" id="rsvpEmpty">No replies yet.</p>
+        <div class="rsvp-table-wrap" id="rsvpTableWrap" hidden>
+          <table class="rsvp-table">
+            <thead>
+              <tr>
+                <th>Guest</th>
+                <th>Attending</th>
+                <th>Message</th>
+                <th>Received</th>
+              </tr>
+            </thead>
+            <tbody id="rsvpTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <script src="/js/clerk-init.js"></script>
+  <script src="/js/template-meta.js"></script>
+  <script src="/js/lib.js"></script>
+  <script src="/js/templates/registry.js"></script>
+  <script src="/js/templates/template.js"></script>
+  <script src="/js/runtime.js"></script>
+  <script src="/js/editor.js"></script>
+</body>
+</html>

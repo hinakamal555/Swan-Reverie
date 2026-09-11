@@ -1,0 +1,40 @@
+/* Classic Floral — design-specific overrides.
+   Shared layout/styles live in core/public/css/invitation.css */
+
+.invite-root {
+  --parchment: #f8f0e5;
+  --parchment-deep: #efe4d4;
+  --leaf: #5a6b5c;
+  --leaf-deep: #3d4f3f;
+  --gold: #d4af37;
+  --gold-deep: #b8942a;
+  --gold-soft: rgba(212, 175, 55, 0.45);
+  --ink: #2c2c2c;
+  --ink-soft: #5a5a5a;
+}
+
+/* Ensure section backgrounds resolve from /assets/ (assembled into site/public/assets/) */
+.verse.intro {
+  background-image: url("/assets/verse-bg.jpg");
+}
+
+.events {
+  background-image: url("/assets/walima-bg.jpg");
+}
+
+.journey {
+  background-image: url("/assets/walima-card.jpg");
+}
+
+.hero-art img {
+  object-fit: cover;
+}
+
+.gate-panel img,
+.seal-img {
+  object-fit: cover;
+}
+
+.urn {
+  object-fit: contain;
+}

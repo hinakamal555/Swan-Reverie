@@ -1,0 +1,38 @@
+[build]
+  publish = "site/public"
+  command = "node scripts/assemble.js && cd site && npm install"
+  functions = "site/netlify/functions"
+
+[functions]
+  node_bundler = "esbuild"
+  included_files = ["site/server/**"]
+  external_node_modules = ["mongodb", "@clerk/express", "@clerk/backend"]
+
+[build.environment]
+  NODE_VERSION = "18"
+
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/api/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/i/*"
+  to = "/invitation.html"
+  status = 200
+
+[[redirects]]
+  from = "/editor/*"
+  to = "/editor.html"
+  status = 200
+
+[[redirects]]
+  from = "/preview/*"
+  to = "/invitation.html"
+  status = 200
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"

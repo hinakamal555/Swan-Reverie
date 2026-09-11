@@ -1,0 +1,13 @@
+{
+  "name": "template-editor-starter-kit",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Reusable starter kit — one shared editor engine, swap the template folder per Etsy product.",
+  "scripts": {
+    "assemble": "node scripts/assemble.js",
+    "dev": "node scripts/assemble.js && cd site && npm install && node server/index.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
