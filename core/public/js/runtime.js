@@ -168,18 +168,35 @@
     canvas.style.height = "100%";
     const ctx = canvas.getContext("2d", { willReadFrequently: true });
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    paintFoil(ctx, size, canvas.dataset.hidden || "SCRATCH");
+    paintFoil(ctx, size, canvas.dataset.hidden || "SCRATCH", canvas);
     return { ctx, size, dpr, cleared: 0, lastCheck: 0 };
   }
 
-  function paintFoil(ctx, size, hiddenText) {
+  function scratchPalette(canvas) {
+    const root = canvas.closest(".invite-root");
+    const style = getComputedStyle(root || document.documentElement);
+    const read = (name, fallback) => style.getPropertyValue(name).trim() || fallback;
+    return {
+      c0: read("--scratch-foil-light", "#f6e7a8"),
+      c1: read("--scratch-foil", "#d4af37"),
+      c2: read("--scratch-foil-mid", "#fff3c0"),
+      c3: read("--scratch-foil-deep", "#c5a028"),
+      c4: read("--scratch-foil-dark", "#8a7018"),
+      speckleLight: read("--scratch-foil-speckle-light", "#fff8d4"),
+      speckleDark: read("--scratch-foil-speckle-dark", "#7a6414"),
+      text: read("--scratch-foil-text", "rgba(80, 60, 10, 0.38)"),
+    };
+  }
+
+  function paintFoil(ctx, size, hiddenText, canvas) {
     const radius = size / 2;
+    const palette = scratchPalette(canvas);
     const gradient = ctx.createLinearGradient(0, 0, size, size);
-    gradient.addColorStop(0, "#f6e7a8");
-    gradient.addColorStop(0.28, "#d4af37");
-    gradient.addColorStop(0.5, "#fff3c0");
-    gradient.addColorStop(0.72, "#c5a028");
-    gradient.addColorStop(1, "#8a7018");
+    gradient.addColorStop(0, palette.c0);
+    gradient.addColorStop(0.28, palette.c1);
+    gradient.addColorStop(0.5, palette.c2);
+    gradient.addColorStop(0.72, palette.c3);
+    gradient.addColorStop(1, palette.c4);
     ctx.beginPath();
     ctx.arc(radius, radius, radius, 0, Math.PI * 2);
     ctx.fillStyle = gradient;
@@ -187,12 +204,12 @@
     ctx.save();
     ctx.globalAlpha = 0.18;
     for (let i = 0; i < 90; i += 1) {
-      ctx.fillStyle = i % 2 ? "#fff8d4" : "#7a6414";
+      ctx.fillStyle = i % 2 ? palette.speckleLight : palette.speckleDark;
       ctx.fillRect(Math.random() * size, Math.random() * size, 1.4, 1.4);
     }
     ctx.restore();
     const label = String(hiddenText || "SCRATCH").split(" ").pop() || "SCRATCH";
-    ctx.fillStyle = "rgba(80, 60, 10, 0.38)";
+    ctx.fillStyle = palette.text;
     ctx.font = `500 ${Math.max(11, size * 0.13)}px Outfit, sans-serif`;
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";

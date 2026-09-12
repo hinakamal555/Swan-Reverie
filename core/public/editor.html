@@ -10,6 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Great+Vibes&family=Outfit:wght@300;400;500&family=Playfair+Display:ital,wght@0,500;1,500&display=swap" rel="stylesheet">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect fill='%235A6B5C' width='64' height='64' rx='12'/%3E%3Ctext x='32' y='42' text-anchor='middle' fill='%23D4AF37' font-family='Georgia' font-size='22'%3E%26amp;%3C/text%3E%3C/svg%3E">
   <link rel="stylesheet" href="/css/invitation.css">
+  <link rel="stylesheet" href="/css/template.css">
   <link rel="stylesheet" href="/css/editor.css">
 </head>
 <body class="editor-body">
@@ -81,9 +82,8 @@
 
         <section class="ed-section" id="sec-events">
           <h2>Events</h2>
-          <p class="hint">Each event shows a title, date, dress line, colour dots, time, place, maps, and calendar.</p>
+          <p class="hint">Each event shows a title, date, dress line, colour dots, time, place, and maps.</p>
           <label>Maps button <input name="text.mapsButtonLabel" maxlength="160"></label>
-          <label>Calendar button <input name="text.calendarButtonLabel" maxlength="160"></label>
           <div id="eventList"></div>
           <button type="button" class="ghost-btn" id="addEventBtn">+ Add event</button>
         </section>
@@ -111,8 +111,10 @@
           <p class="form-error" id="musicUploadError" hidden></p>
           <div class="media-actions">
             <label class="upload-row">Upload music (MP3) <input id="musicUploadInput" data-upload="musicUrl" type="file" accept="audio/mpeg,audio/mp3,.mp3"></label>
+            <button type="button" class="ghost-btn" id="useDefaultMusicBtn" hidden>Use template music</button>
             <button type="button" class="ghost-btn" data-clear-media="musicUrl">Remove music</button>
           </div>
+          <p class="hint" id="musicDefaultHint" hidden>Switch back to the design’s built-in background music anytime.</p>
         </section>
 
         <section class="ed-section" id="sec-rsvp">

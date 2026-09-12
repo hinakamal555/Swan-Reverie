@@ -1,9 +1,10 @@
 {
-  "templateId": "classic-floral-01",
-  "name": "Classic Floral",
+  "templateId": "swan-reverie-01",
+  "name": "Swan Reverie",
   "version": "1.0.0",
-  "siteTitle": "Classic Floral Invitation Editor",
+  "siteTitle": "Swan Reverie Invitation Editor",
   "brandName": "HoneyBee Studio",
+  "defaultMusicUrl": "/assets/kaazoom-all-is-calm-now-relaxing-flute-and-strings-385944.mp3",
   "supportedFeatures": [
     "gatefold",
     "countdown",
@@ -12,7 +13,6 @@
     "journey",
     "rsvp",
     "maps",
-    "calendar",
     "music"
   ],
   "editor": {

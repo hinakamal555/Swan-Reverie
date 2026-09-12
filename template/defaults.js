@@ -1,6 +1,6 @@
 const { shortId } = require("./ids");
 
-const TEMPLATE_ID = "classic-floral-01";
+const TEMPLATE_ID = "swan-reverie-01";
 const TEMPLATE_VERSION = "1.0.0";
 
 function defaultContent() {
@@ -32,14 +32,13 @@ function defaultContent() {
       scratchPrompt: "Scratch to discover the date",
       scratchCompletionText: "We're getting married!",
       mapsButtonLabel: "View on Maps",
-      calendarButtonLabel: "Add to Calendar",
       closingText: "We ask for the pleasure of your company.",
       rsvpNameLabel: "Your name",
       rsvpMessageLabel: "Message (optional)",
       rsvpSubmitLabel: "Send RSVP",
     },
     theme: {
-      colors: ["#5a6b5c", "#d4af37", "#8ba3b5"],
+      colors: ["#b88790", "#c4a574", "#9aafb8"],
     },
     scratch: {
       enabled: true,
@@ -63,7 +62,7 @@ function defaultContent() {
         endTime: "20:00",
         mapsUrl: "https://maps.google.com/?q=The+Willow+Room+Charleston",
         description: "A first toast under the trees.",
-        colors: ["#c4a35a", "#7a8b68", "#f7f3ea"],
+        colors: ["#c4a574", "#b88790", "#f7f0e8"],
       },
       {
         id: shortId("evt"),
@@ -77,7 +76,7 @@ function defaultContent() {
         endTime: "17:00",
         mapsUrl: "https://maps.google.com/?q=The+Willow+Room+Charleston",
         description: "Please join us as we say our vows.",
-        colors: ["#8ba3b5", "#f3ece1", "#3d4f3f"],
+        colors: ["#9aafb8", "#e8d4d6", "#6d565c"],
       },
       {
         id: shortId("evt"),
@@ -91,7 +90,7 @@ function defaultContent() {
         endTime: "23:00",
         mapsUrl: "https://maps.google.com/?q=The+Willow+Room+Charleston",
         description: "Join us for dinner, toasts, and dancing.",
-        colors: ["#3d4f3f", "#cbb89a", "#f7f3ea"],
+        colors: ["#6d565c", "#c4a574", "#f7f0e8"],
       },
     ],
     location: {
@@ -118,9 +117,9 @@ function defaultContent() {
       imageUrl: "",
     },
     media: {
-      heroImageUrl: "/assets/hero-archway.jpg",
+      heroImageUrl: "/assets/hero-lake.jpg",
       gallery: [],
-      musicUrl: "/assets/sample-music.mp3",
+      musicUrl: "/assets/kaazoom-all-is-calm-now-relaxing-flute-and-strings-385944.mp3",
     },
     rsvp: {
       enabled: true,

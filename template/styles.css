@@ -1,40 +1,677 @@
-/* Classic Floral — design-specific overrides.
-   Shared layout/styles live in core/public/css/invitation.css */
+/* Swan Reverie — lake hero, linen pages, embroidered close. */
 
 .invite-root {
-  --parchment: #f8f0e5;
-  --parchment-deep: #efe4d4;
-  --leaf: #5a6b5c;
-  --leaf-deep: #3d4f3f;
-  --gold: #d4af37;
-  --gold-deep: #b8942a;
-  --gold-soft: rgba(212, 175, 55, 0.45);
-  --ink: #2c2c2c;
-  --ink-soft: #5a5a5a;
+  --linen: #e6dcd0;
+  --linen-deep: #ddd4c8;
+  --parchment: #f7f0e8;
+  --parchment-deep: #efe4d6;
+  --leaf: #b88790;
+  --leaf-deep: #6d565c;
+  --gold: #c4a574;
+  --gold-deep: #8d6d3e;
+  --gold-soft: rgba(196, 165, 116, 0.42);
+  --ink: #3a322c;
+  --ink-soft: #6a5e57;
+  --scratch-foil: #b27b85;
+  --scratch-foil-light: #e8b4bc;
+  --scratch-foil-mid: #f5d8de;
+  --scratch-foil-deep: #995f6a;
+  --scratch-foil-dark: #734652;
+  --scratch-foil-speckle-light: #fff0f3;
+  --scratch-foil-speckle-dark: #6d454d;
+  --scratch-foil-text: rgba(90, 45, 55, 0.42);
 }
 
-/* Ensure section backgrounds resolve from /assets/ (assembled into site/public/assets/) */
-.verse.intro {
-  background-image: url("/assets/verse-bg.jpg");
+.page::before {
+  display: none;
 }
 
-.events {
-  background-image: url("/assets/walima-bg.jpg");
+.page.swan-sheet,
+.invite-container.swan-sheet {
+  background: var(--linen);
 }
 
-.journey {
-  background-image: url("/assets/walima-card.jpg");
+/* ── Swan door gate (live + published only) ── */
+.swan-gate-stage {
+  background: #f3f0ec;
 }
 
-.hero-art img {
+.swan-gate-stage .gate,
+.swan-gate-stage .door-left,
+.swan-gate-stage .door-right {
+  box-shadow: 10px 0 32px rgba(60, 50, 42, 0.14);
+}
+
+.swan-gate-stage .gate--right,
+.swan-gate-stage .door-right {
+  width: calc(50% + 1px);
+  margin-left: -1px;
+}
+
+.swan-gate-stage .gate-panel img {
+  display: block;
+  width: 100%;
+  max-width: none;
+  height: 100%;
   object-fit: cover;
+  object-position: center center;
 }
 
-.gate-panel img,
-.seal-img {
+.swan-gate-seal {
+  width: clamp(4.8rem, 22vw, 6.8rem);
+  height: clamp(7.5rem, 30vw, 10.5rem);
+  border-radius: 0;
+  filter: none;
+  transform: translate(-50%, -42%);
+  cursor: pointer;
+}
+
+.swan-gate-seal .seal-img {
+  display: none;
+}
+
+.gate-smoke {
+  position: absolute;
+  inset: 0;
+  z-index: 6;
+  pointer-events: none;
+  opacity: 0;
+  overflow: hidden;
+}
+
+.gate-smoke span {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 14rem;
+  height: 14rem;
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(0.35);
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.92) 0%, rgba(255, 255, 255, 0.55) 38%, rgba(255, 255, 255, 0) 72%);
+  filter: blur(18px);
+  opacity: 0;
+}
+
+.gate-smoke span:nth-child(1) { animation-delay: 0.1s; }
+.gate-smoke span:nth-child(2) { width: 18rem; height: 18rem; filter: blur(26px); animation-delay: 0.35s; }
+.gate-smoke span:nth-child(3) { width: 22rem; height: 22rem; filter: blur(34px); animation-delay: 0.65s; }
+
+.swan-gate-stage.is-open .gate-smoke span {
+  animation: gate-smoke-bloom 3.2s ease forwards;
+}
+
+@keyframes gate-smoke-bloom {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.35);
+  }
+  18% {
+    opacity: 0.95;
+    transform: translate(-50%, -50%) scale(0.85);
+  }
+  45% {
+    opacity: 0.72;
+    transform: translate(-50%, -48%) scale(1.15);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -46%) scale(1.55);
+  }
+}
+
+.hero.hero--lake {
+  position: relative;
+  min-height: 100svh;
+  overflow: hidden;
+  background: #f4ece0;
+}
+
+.hero--lake .hero-art {
+  position: absolute;
+  inset: 0;
+}
+
+.hero--lake .hero-art img {
+  display: block;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
+  object-position: center 42%;
 }
 
-.urn {
+.hero--lake::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 3.5rem;
+  background: linear-gradient(180deg, transparent 0%, var(--linen) 100%);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.hero--lake .hero-copy {
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: min(68%, 19rem);
+  z-index: 3;
+}
+
+.hero--lake .eyebrow,
+.hero--lake .hero-meta {
+  color: #5a5048;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+.hero--lake .couple .name,
+.hero--lake .couple .amp {
+  color: #3a322c;
+}
+
+.hero--lake .hero-rule {
+  background: linear-gradient(90deg, transparent, #c4a574, transparent);
+  height: 1px;
+  width: 4.2rem;
+}
+
+@keyframes name-ink {
+  from {
+    opacity: 0.18;
+    color: #d4c4b8;
+  }
+  to {
+    opacity: 1;
+    color: #3a322c;
+  }
+}
+
+.petal-drift {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.petal-drift span {
+  position: absolute;
+  top: -8%;
+  width: 0.55rem;
+  height: 0.85rem;
+  border-radius: 70% 0 70% 0;
+  background: radial-gradient(circle at 30% 30%, #fff6f4, #e2b4bc 70%);
+  opacity: 0.5;
+  animation: petal-fall 16s linear infinite;
+}
+
+.petal-drift span:nth-child(1) { left: 12%; animation-duration: 18s; animation-delay: -2s; }
+.petal-drift span:nth-child(2) { left: 28%; width: 0.4rem; height: 0.65rem; animation-duration: 14s; animation-delay: -7s; }
+.petal-drift span:nth-child(3) { left: 46%; animation-duration: 20s; animation-delay: -4s; }
+.petal-drift span:nth-child(4) { left: 62%; width: 0.48rem; height: 0.72rem; animation-duration: 15s; animation-delay: -11s; }
+.petal-drift span:nth-child(5) { left: 78%; animation-duration: 19s; animation-delay: -6s; }
+.petal-drift span:nth-child(6) { left: 88%; width: 0.36rem; height: 0.58rem; animation-duration: 13s; animation-delay: -9s; }
+
+@keyframes petal-fall {
+  0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+  8% { opacity: 0.5; }
+  92% { opacity: 0.35; }
+  100% { transform: translateY(118vh) rotate(220deg); opacity: 0; }
+}
+
+.scroll-down {
+  background: #6d565c;
+  color: #f7f0e8;
+}
+
+.music-toggle,
+.ctrl-btn {
+  background: #fff8f4;
+  color: #6d565c;
+}
+
+/* ── Shared linen for every page after the hero, except closing ── */
+.pages-main {
+  background: transparent;
+}
+
+.invite-root .linen-section {
+  position: relative;
+  z-index: 2;
+  display: block;
+  min-height: 100svh;
+  overflow: visible;
+  padding: 0;
+  margin: 0;
+  background-color: var(--linen);
+  background-image: url("/assets/linen-texture.jpg");
+  background-size: 220px auto;
+  background-repeat: repeat;
+  background-position: 0 0;
+}
+
+.deco-layer {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.deco {
+  position: absolute;
+  pointer-events: none;
+  user-select: none;
+  height: auto;
+}
+
+.section-inner {
+  position: relative;
+  z-index: 1;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+/* Intro — pearls top-left, lotus lower-left, swans lower-right */
+.intro .deco-pearls {
+  top: -2%;
+  left: -6%;
+  width: min(82%, 19rem);
+}
+
+.intro .deco-lotus {
+  left: 2%;
+  bottom: 16%;
+  width: min(22%, 5.8rem);
+  z-index: 1;
+}
+
+.intro .deco-swans-nest {
+  right: 0.6rem;
+  bottom: 5.5rem;
+  width: min(38%, 8rem);
+  z-index: 2;
+  filter: drop-shadow(0 6px 14px rgba(80, 62, 52, 0.16));
+}
+
+.invite-root .intro.linen-section .section-inner {
+  justify-content: flex-start;
+  padding: 7.2rem 2.2rem 8rem;
+}
+
+.intro .together {
+  color: #8a5a64;
+}
+
+.intro .intro-body,
+.intro .family-name {
+  color: #3a322c;
+}
+
+.intro .family-rule {
+  background: linear-gradient(180deg, transparent, #c4a574, transparent);
+}
+
+/* When — large wreath frames countdown + scratch seals */
+.invite-root .when.linen-section {
+  position: relative;
+}
+
+.invite-root .when .deco-layer {
+  z-index: 2;
+}
+
+.invite-root .when .section-inner {
+  position: relative;
+  z-index: 3;
+}
+
+.when .deco-wreath {
+  top: 50%;
+  left: 50%;
+  width: min(138%, 44rem);
+  transform: translate(-50%, -50%);
+}
+
+.invite-root .when.linen-section .section-inner {
+  padding: 4.5rem 1.6rem 6rem;
+  gap: 0.25rem;
+}
+
+.invite-root .when .script-head {
+  margin-bottom: 0.35rem;
+}
+
+.invite-root .when .section-lead {
+  margin-bottom: 0.55rem;
+  max-width: 14rem;
+}
+
+.invite-root .when .countdown {
+  margin-bottom: 1rem;
+}
+
+.invite-root .when-scratch {
+  position: relative;
+  z-index: 3;
+  width: min(100%, 20.5rem);
+}
+
+.invite-root .when .scratch-lead {
+  margin-bottom: 0.75rem;
+}
+
+.invite-root .when .seals {
+  max-width: 19rem;
+  gap: 0.45rem;
+  margin: 0 auto;
+}
+
+.invite-root .when .seal {
+  width: clamp(3.2rem, 15vw, 4.1rem);
+  height: clamp(3.2rem, 15vw, 4.1rem);
+}
+
+.invite-root .when .married-badge {
+  position: relative;
+  z-index: 4;
+  width: min(100%, 17rem);
+  margin: 1.35rem auto 0;
+  text-align: center;
+}
+
+.invite-root .when .married-badge[hidden] {
+  display: none !important;
+}
+
+.invite-root .when .married-badge:not([hidden]) {
+  animation: when-badge-in 0.7s ease both;
+}
+
+@keyframes when-badge-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.when .script-head,
+.when .count-num {
+  color: #6d565c;
+}
+
+.when .count-num {
+  font-family: var(--display);
+  font-style: italic;
+}
+
+.when .seal {
+  background: radial-gradient(circle at 50% 42%, #fffdf8, #f7e8ec);
+  box-shadow:
+    0 0 0 2px rgba(178, 123, 133, 0.58),
+    0 0 0 4px rgba(178, 123, 133, 0.16);
+}
+
+.when .seal-sep {
+  width: 0.45rem;
+  background: #b27b85;
+}
+
+.invite-root .when .married-badge {
+  color: #b88790;
+}
+
+/* Events — blossom canopy across the top */
+.events .deco-blossom {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 1px 2px rgba(70, 55, 48, 0.08));
+}
+
+.invite-root .events.linen-section {
+  display: block;
+  align-items: stretch;
+  justify-content: stretch;
+}
+
+.invite-root .events.linen-section .section-inner {
+  padding: 13.4rem 2.2rem 4.2rem;
+  justify-content: flex-start;
+}
+
+.events .event-list {
+  width: 100%;
+  max-width: 18.5rem;
+  gap: 1.35rem;
+}
+
+.events .event-title {
+  color: #6d565c;
+}
+
+.maps-btn {
+  color: #6d565c;
+  border-color: rgba(196, 165, 116, 0.6);
+  background: rgba(255, 252, 248, 0.86);
+}
+
+.maps-icon {
+  color: #8d6d3e;
+}
+
+/* Journey — wisteria hanging from the top */
+.journey .deco-wisteria {
+  top: 0;
+  left: 0;
+  width: 104%;
+  margin-left: -2%;
+}
+
+.invite-root .journey.linen-section {
+  display: block;
+  padding: 0;
+}
+
+.invite-root .journey.linen-section .section-inner {
+  padding: 8.6rem 2rem 4.2rem;
+}
+
+.journey-sheet {
+  min-height: 0;
+  padding: 0;
+}
+
+.journey .journey-title,
+.journey .journey-sub,
+.journey .journey-scene {
+  color: #6d565c;
+}
+
+.journey .journey-maps {
+  color: #8a5a64;
+}
+
+/* RSVP — cosmos in opposite corners */
+.rsvp .deco-cosmos {
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.invite-root .rsvp.linen-section .section-inner {
+  padding: 6.4rem 1.9rem 6.6rem;
+}
+
+.rsvp .script-head {
+  color: #6d565c;
+}
+
+.rsvp .rsvp-form {
+  width: 100%;
+  padding: 1.05rem 0.95rem 1.2rem;
+  background: rgba(255, 252, 249, 0.82);
+  border: 1px solid rgba(196, 165, 116, 0.28);
+}
+
+.rsvp .field > span,
+.rsvp .field legend {
+  color: #8a5a64;
+}
+
+.rsvp .field input[type="text"],
+.rsvp .field textarea {
+  border-color: rgba(184, 135, 144, 0.32);
+  background: #fffdfb;
+}
+
+.rsvp .check input:checked {
+  background: #b88790;
+  box-shadow: inset 0 0 0 2.5px #fffdfb;
+}
+
+.submit-btn {
+  background: #b88790;
+  color: #fff8f4;
+}
+
+.submit-btn:hover,
+.submit-btn:focus-visible {
+  background: #6d565c;
+}
+
+/* Closing — keep the embroidered linen page */
+.invite-root .scene-section.closing {
+  position: relative;
+  z-index: 2;
+  display: block;
+  min-height: 100svh;
+  overflow: hidden;
+  padding: 0;
+  margin: 0;
+  background: #f3eee6;
+}
+
+.closing .scene-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.invite-root .closing .section-inner {
+  padding: 5.2rem 1.8rem 13.5rem;
+  justify-content: flex-start;
+}
+
+.closing .closing-text {
+  margin-top: 2rem;
+  color: #4a4038;
+}
+
+.closing .closing-names {
+  color: #6d565c;
+}
+
+.closing-swans {
+  display: block;
+  width: min(17.5rem, 78%);
+  height: auto;
+  margin: 2rem auto 0;
   object-fit: contain;
+  filter: drop-shadow(0 8px 18px rgba(70, 55, 48, 0.14));
+}
+
+.invite-root.is-contrast .hero-copy {
+  background: #dccfc1;
+  padding: 1.15rem 1.35rem 1.2rem;
+  border-radius: 0.4rem;
+  box-shadow: 0 0 0 1px rgba(120, 98, 82, 0.1);
+}
+
+.invite-root.is-contrast .hero--lake .eyebrow,
+.invite-root.is-contrast .hero--lake .hero-meta {
+  text-shadow: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .petal-drift span {
+    animation: none !important;
+  }
+
+  .swan-gate-stage.is-open .gate-smoke span {
+    animation: none !important;
+    opacity: 0;
+  }
+
+  .invite-root .when .married-badge:not([hidden]) {
+    animation: none !important;
+  }
+}
+
+@media (max-width: 599.98px) {
+  .invite-root .when.linen-section .section-inner {
+    padding-left: 2.2rem;
+    padding-right: 2.2rem;
+  }
+
+  .invite-root .events.linen-section .section-inner {
+    padding-left: 1.8rem;
+    padding-right: 1.8rem;
+  }
+}
+
+/* Editor preview — same wreath scale and spacing as live */
+.invite-root.is-embedded .hero.hero--lake {
+  min-height: 36rem;
+}
+
+.invite-root.is-embedded .intro.linen-section {
+  min-height: auto;
+}
+
+.invite-root.is-embedded .intro.linen-section .section-inner {
+  min-height: auto;
+  justify-content: flex-start;
+  padding: 4.8rem 1.85rem 6.8rem;
+}
+
+.invite-root.is-embedded .when.linen-section {
+  min-height: 46rem;
+}
+
+.invite-root.is-embedded .when.linen-section .section-inner {
+  min-height: 46rem;
+  padding: 4rem 1.5rem 5.5rem;
+}
+
+.invite-root.is-embedded .when .deco-wreath {
+  width: min(138%, 44rem);
+}
+
+.invite-root.is-embedded .when-scratch {
+  width: min(100%, 20.5rem);
+}
+
+.invite-root.is-embedded .when .seals {
+  max-width: 19rem;
+}
+
+.invite-root.is-embedded .linen-section:not(.intro):not(.when),
+.invite-root.is-embedded .scene-section.closing {
+  min-height: 38rem;
+}
+
+.invite-root.is-embedded .linen-section:not(.intro):not(.when) .section-inner,
+.invite-root.is-embedded .scene-section.closing .section-inner {
+  min-height: 38rem;
 }

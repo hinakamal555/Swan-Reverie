@@ -55,6 +55,7 @@ window.__INVITE_SITE_TITLE__ = ${JSON.stringify(config.siteTitle || config.name)
 window.__INVITE_BRAND_NAME__ = ${JSON.stringify(config.brandName || "Invitation Editor")};
 window.__INVITE_EDITOR__ = ${JSON.stringify(config.editor || { sections: [], features: [] })};
 window.__INVITE_SUPPORTED_FEATURES__ = ${JSON.stringify(config.supportedFeatures || [])};
+window.__INVITE_DEFAULT_MUSIC_URL__ = ${JSON.stringify(config.defaultMusicUrl || "")};
 `;
   write(path.join(SITE, "public", "js", "template-meta.js"), clientMeta);
 }
