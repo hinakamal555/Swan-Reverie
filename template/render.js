@@ -82,10 +82,10 @@
         <div class="gate-stage swan-gate-stage" id="gateStage">
           <div class="gatefold swan-gatefold" id="gatefold" role="dialog" aria-modal="true" aria-label="Closed wedding invitation">
             <div class="gate gate--left door-left">
-              <div class="gate-panel"><img src="/assets/gate-left.jpg" alt="" draggable="false"></div>
+              <div class="gate-panel gate-panel--left" aria-hidden="true"></div>
             </div>
             <div class="gate gate--right door-right">
-              <div class="gate-panel"><img src="/assets/gate-right.jpg" alt="" draggable="false"></div>
+              <div class="gate-panel gate-panel--right" aria-hidden="true"></div>
               <button class="seal-btn swan-gate-seal" id="openInvite" type="button" aria-label="${escapeHtml(ui.openSeal)}">
                 <img class="seal-img" src="/assets/pearl-seal.svg" alt="" width="220" height="220" draggable="false" hidden>
               </button>

@@ -42,19 +42,22 @@
   box-shadow: 10px 0 32px rgba(60, 50, 42, 0.14);
 }
 
-.swan-gate-stage .gate--right,
-.swan-gate-stage .door-right {
-  width: calc(50% + 1px);
-  margin-left: -1px;
+.swan-gate-stage .gate-panel {
+  background-image: url("/assets/gate-doors.jpg");
+  background-repeat: no-repeat;
+  background-size: 200% 100%;
 }
 
-.swan-gate-stage .gate-panel img {
-  display: block;
-  width: 100%;
-  max-width: none;
-  height: 100%;
-  object-fit: cover;
-  object-position: center center;
+.swan-gate-stage .gate-panel--left,
+.swan-gate-stage .gate--left .gate-panel,
+.swan-gate-stage .door-left .gate-panel {
+  background-position: left center;
+}
+
+.swan-gate-stage .gate-panel--right,
+.swan-gate-stage .gate--right .gate-panel,
+.swan-gate-stage .door-right .gate-panel {
+  background-position: right center;
 }
 
 .swan-gate-seal {
@@ -630,40 +633,9 @@
   }
 }
 
-/* Editor preview — same wreath scale and spacing as live */
+/* Editor preview — hero shortened so later pages stay in view while scrolling */
 .invite-root.is-embedded .hero.hero--lake {
   min-height: 36rem;
-}
-
-.invite-root.is-embedded .intro.linen-section {
-  min-height: auto;
-}
-
-.invite-root.is-embedded .intro.linen-section .section-inner {
-  min-height: auto;
-  justify-content: flex-start;
-  padding: 4.8rem 1.85rem 6.8rem;
-}
-
-.invite-root.is-embedded .when.linen-section {
-  min-height: 46rem;
-}
-
-.invite-root.is-embedded .when.linen-section .section-inner {
-  min-height: 46rem;
-  padding: 4rem 1.5rem 5.5rem;
-}
-
-.invite-root.is-embedded .when .deco-wreath {
-  width: min(138%, 44rem);
-}
-
-.invite-root.is-embedded .when-scratch {
-  width: min(100%, 20.5rem);
-}
-
-.invite-root.is-embedded .when .seals {
-  max-width: 19rem;
 }
 
 .invite-root.is-embedded .linen-section:not(.intro):not(.when),
