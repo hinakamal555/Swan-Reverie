@@ -224,60 +224,39 @@
   }
 
   form.addEventListener("click", (event) => {
-    const clear = event.target.closest("[data-clear-media]");
-    if (!clear) return;
-    const field = clear.dataset.clearMedia;
+    const restore = event.target.closest("[data-restore-default-media]");
+    if (!restore) return;
+    const field = restore.dataset.restoreDefaultMedia;
     if (field === "musicUrl") {
-      form.elements.musicUrl.value = "";
+      const defaultUrl = String(window.__INVITE_DEFAULT_MUSIC_URL__ || "").trim();
+      if (!defaultUrl) return;
+      form.elements.musicUrl.value = defaultUrl;
       invitation.content.media = invitation.content.media || {};
-      invitation.content.media.musicUrl = "";
+      invitation.content.media.musicUrl = defaultUrl;
       const upload = document.getElementById("musicUploadInput");
       if (upload) upload.value = "";
       setMusicUploadError("");
+      afterChange();
     }
-    afterChange();
   });
 
   const musicUploadInput = document.getElementById("musicUploadInput");
   const useDefaultMusicBtn = document.getElementById("useDefaultMusicBtn");
-  const musicDefaultHint = document.getElementById("musicDefaultHint");
   const MAX_MUSIC_BYTES = 10 * 1024 * 1024;
   if (musicUploadInput) {
     musicUploadInput.addEventListener("change", () => uploadMusicFile(musicUploadInput));
   }
 
-  function defaultMusicUrl() {
-    return String(window.__INVITE_DEFAULT_MUSIC_URL__ || "").trim();
-  }
-
-  function syncDefaultMusicUi() {
-    const defaultUrl = defaultMusicUrl();
+  function syncDefaultMusicButton() {
     if (!useDefaultMusicBtn) return;
+    const defaultUrl = String(window.__INVITE_DEFAULT_MUSIC_URL__ || "").trim();
     if (!defaultUrl) {
       useDefaultMusicBtn.hidden = true;
-      if (musicDefaultHint) musicDefaultHint.hidden = true;
       return;
     }
     useDefaultMusicBtn.hidden = false;
-    if (musicDefaultHint) musicDefaultHint.hidden = false;
     const current = String(form.elements.musicUrl?.value || "").trim();
-    const usingDefault = current === defaultUrl;
-    useDefaultMusicBtn.disabled = usingDefault;
-    useDefaultMusicBtn.textContent = usingDefault ? "Using template music" : "Use template music";
-  }
-
-  if (useDefaultMusicBtn) {
-    useDefaultMusicBtn.addEventListener("click", () => {
-      const defaultUrl = defaultMusicUrl();
-      if (!defaultUrl) return;
-      form.elements.musicUrl.value = defaultUrl;
-      invitation.content.media = invitation.content.media || {};
-      invitation.content.media.musicUrl = defaultUrl;
-      if (musicUploadInput) musicUploadInput.value = "";
-      setMusicUploadError("");
-      syncDefaultMusicUi();
-      afterChange();
-    });
+    useDefaultMusicBtn.disabled = current === defaultUrl;
   }
 
   async function uploadMusicFile(input) {
@@ -301,7 +280,7 @@
       invitation.content.media = invitation.content.media || {};
       invitation.content.media.musicUrl = url;
       input.value = "";
-      syncDefaultMusicUi();
+      syncDefaultMusicButton();
       window.clearTimeout(saveTimer);
       renderPreview();
       await save("manual");
@@ -409,7 +388,7 @@
     c.language = "en";
     renderScratch();
     renderEvents();
-    syncDefaultMusicUi();
+    syncDefaultMusicButton();
   }
 
   function readInvitationTitle() {
@@ -717,7 +696,7 @@
   function afterChange() {
     dirty = true;
     setState("Unsaved changes");
-    syncDefaultMusicUi();
+    syncDefaultMusicButton();
     renderPreview();
     window.clearTimeout(saveTimer);
     saveTimer = window.setTimeout(() => save("auto"), 1400);

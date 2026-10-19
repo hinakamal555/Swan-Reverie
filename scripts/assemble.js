@@ -37,7 +37,15 @@ function readJson(file) {
   return JSON.parse(fs.readFileSync(file, "utf8"));
 }
 
-function writeMeta(config) {
+function readDefaultMusicUrl() {
+  const file = path.join(TEMPLATE, "defaults.js");
+  if (!fs.existsSync(file)) return "";
+  const text = fs.readFileSync(file, "utf8");
+  const match = text.match(/musicUrl:\s*(["'])(.*?)\1/);
+  return match ? match[2] : "";
+}
+
+function writeMeta(config, defaultMusicUrl) {
   const serverMeta = `module.exports = ${JSON.stringify({
     templateId: config.templateId,
     name: config.name,
@@ -55,7 +63,7 @@ window.__INVITE_SITE_TITLE__ = ${JSON.stringify(config.siteTitle || config.name)
 window.__INVITE_BRAND_NAME__ = ${JSON.stringify(config.brandName || "Invitation Editor")};
 window.__INVITE_EDITOR__ = ${JSON.stringify(config.editor || { sections: [], features: [] })};
 window.__INVITE_SUPPORTED_FEATURES__ = ${JSON.stringify(config.supportedFeatures || [])};
-window.__INVITE_DEFAULT_MUSIC_URL__ = ${JSON.stringify(config.defaultMusicUrl || "")};
+window.__INVITE_DEFAULT_MUSIC_URL__ = ${JSON.stringify(defaultMusicUrl || "")};
 `;
   write(path.join(SITE, "public", "js", "template-meta.js"), clientMeta);
 }
@@ -153,7 +161,7 @@ function main() {
     copyFile(path.join(TEMPLATE, "styles.css"), path.join(SITE, "public", "css", "template.css"));
   }
 
-  writeMeta(config);
+  writeMeta(config, readDefaultMusicUrl());
   patchRender();
 
   for (const file of ["editor.html", "invitation.html", "index.html"]) {

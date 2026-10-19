@@ -57,6 +57,10 @@ function invitationExtras(doc) {
   };
 }
 
+function belongsToCurrentTemplate(doc) {
+  return String(doc.templateId || "") === TEMPLATE_ID;
+}
+
 async function loadOwned(req, res) {
   const userId = getUserId(req);
   if (!userId) {
@@ -80,6 +84,10 @@ async function loadOwned(req, res) {
     res.status(403).json({ error: "You do not have access to this invitation." });
     return null;
   }
+  if (!belongsToCurrentTemplate(doc)) {
+    res.status(404).json({ error: "That invitation could not be found." });
+    return null;
+  }
 
   return { db, doc, userId };
 }
@@ -98,7 +106,7 @@ router.get("/", requireUser, async (req, res) => {
     const db = await getDb();
     const docs = await db
       .collection("invitations")
-      .find({ ownerId: req.userId })
+      .find({ ownerId: req.userId, templateId: TEMPLATE_ID })
       .sort({ updatedAt: -1 })
       .limit(50)
       .toArray();

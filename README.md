@@ -253,7 +253,7 @@ Use **one Clerk application** across every design deploy:
 1. Create an application at [dashboard.clerk.com](https://dashboard.clerk.com)
 2. Copy **Publishable key** and **Secret key** into each site's env vars
 3. Add every Netlify URL you deploy (e.g. `https://classic-floral.netlify.app`, `http://localhost:8888`)
-4. Reuse the same MongoDB cluster if you want — invitations are scoped by `ownerId` (Clerk user) and `templateId`
+4. Reuse the same MongoDB cluster if you want — invitations are scoped by `ownerId` (Clerk user) and `templateId`; each deploy’s dashboard lists only invitations for that site’s `templateId`
 
 When you duplicate this repo for a new design, **keep the same Clerk keys** unless you want a completely separate user base.
 
